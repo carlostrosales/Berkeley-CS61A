@@ -23,6 +23,21 @@ def roll_dice(num_rolls, dice=six_sided):
     assert num_rolls > 0, 'Must roll at least once.'
     # BEGIN PROBLEM 1
     "*** YOUR CODE HERE ***"
+    sum_of_outcomes = 0
+    flag = False
+    while (num_rolls > 0):
+        sum_of_dice = dice()
+        if sum_of_dice == 1:
+            flag = True
+        sum_of_outcomes = sum_of_outcomes + sum_of_dice
+        num_rolls-=1
+
+    if flag:
+        return 1
+    else:
+        return sum_of_outcomes
+    
+    
     # END PROBLEM 1
 
 
@@ -34,6 +49,17 @@ def tail_points(opponent_score):
     """
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
+    ones_place = opponent_score % 10
+
+    def tens_place(opponent_score):
+        opponent_score = opponent_score // 10
+        opponent_score = opponent_score % 10
+        return opponent_score
+    tens_place = tens_place(opponent_score)
+
+    pig_tail = 2 * abs(tens_place - ones_place) + 1
+    return pig_tail
+
     # END PROBLEM 2
 
 
@@ -51,6 +77,10 @@ def take_turn(num_rolls, opponent_score, dice=six_sided):
     assert num_rolls <= 10, 'Cannot roll more than 10 dice.'
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    if num_rolls == 0:
+        return tail_points(opponent_score)
+    else:
+        return roll_dice(num_rolls, dice)
     # END PROBLEM 3
 
 
@@ -74,6 +104,26 @@ def square_update(num_rolls, player_score, opponent_score, dice=six_sided):
 
 # BEGIN PROBLEM 4
 "*** YOUR CODE HERE ***"
+def perfect_square(score):
+    i = score
+    while i != 0:
+        if i * i == score:
+            return True
+        else:
+            i-=1
+    return False
+
+def next_perfect_square(score):
+    i = score
+    while i != 0:
+        squared_score = i * i
+        if squared_score == score:
+            i+=1
+            new_squared_score = i * i
+            return new_squared_score
+        else:
+            i-=1
+
 # END PROBLEM 4
 
 
