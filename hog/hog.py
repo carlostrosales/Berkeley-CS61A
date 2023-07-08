@@ -165,10 +165,11 @@ def play(strategy0, strategy1, update,
     "*** YOUR CODE HERE ***"
     while score0 < goal or score1 < goal:
         if who == 0:
-            strategy0(score0, score1)
-            update()
+            diceRollNumber = strategy0(score0, score1)
+            update(diceRollNumber, score0, score1, dice)
         else:
-            strategy1(score0, score1)
+            diceRollNumber = strategy1(score0, score1)
+            update(diceRollNumber, score1, score0, dice)
 
 
     # END PROBLEM 5
