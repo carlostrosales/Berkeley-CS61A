@@ -167,9 +167,11 @@ def play(strategy0, strategy1, update,
         if who == 0:
             diceRollNumber = strategy0(score0, score1)
             update(diceRollNumber, score0, score1, dice)
+            who = 1
         else:
             diceRollNumber = strategy1(score0, score1)
             update(diceRollNumber, score1, score0, dice)
+            who = 0
 
 
     # END PROBLEM 5
